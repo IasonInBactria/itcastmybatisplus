@@ -85,6 +85,11 @@ class ItcastmybatisplusApplicationTests {
     }
 
     @Test
-    public void
+    public void testSelectOne(){
+        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+        userQueryWrapper.eq("user_name", "lisi");
+        User user_item = userMapper.selectOne(userQueryWrapper);
+        System.out.println(user_item);
+    }
 
 }
