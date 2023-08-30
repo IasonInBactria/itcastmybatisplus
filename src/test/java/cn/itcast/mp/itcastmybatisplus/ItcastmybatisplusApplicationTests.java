@@ -92,4 +92,15 @@ class ItcastmybatisplusApplicationTests {
         System.out.println(user_item);
     }
 
+    @Test
+    public void testSelectList2(){
+        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+        userQueryWrapper.like("email", "itcast");
+        List<User> userList = userMapper.selectList(userQueryWrapper);
+        for (User user_item: userList){
+            System.out.println(user_item);
+        }
+
+    }
+
 }
