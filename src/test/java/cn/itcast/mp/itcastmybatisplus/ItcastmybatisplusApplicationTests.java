@@ -4,6 +4,8 @@ import cn.itcast.mp.itcastmybatisplus.mapper.UserMapper;
 import cn.itcast.mp.itcastmybatisplus.pojo.User;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -100,7 +102,23 @@ class ItcastmybatisplusApplicationTests {
         for (User user_item: userList){
             System.out.println(user_item);
         }
+    }
 
+    @Test
+    public void testSelectPage(){
+        Page<User> userPage = new Page<>(1, 1);
+        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+        userQueryWrapper.like("email", "itcast");
+
+        IPage<User> iPage = userMapper.selectPage(userPage, userQueryWrapper);
+        System.out.println("数据总条数:" + iPage.getTotal());
+        System.out.println("数据总页数:"+ iPage.getPages());
+        System.out.println("当前页数:" + iPage.getCurrent());
+
+        List<User> userList = iPage.getRecords();
+        for (User user_item: userList){
+            System.out.println(user_item);
+        }
     }
 
 }
