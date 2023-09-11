@@ -135,4 +135,10 @@ class ItcastmybatisplusApplicationTests {
         userQueryWrapper.in("id", ids);
         userMapper.updateAgeByCustomWrapper(amount, userQueryWrapper);
     }
+
+    @Test
+    public void testMultiTableQuery(){
+        List<Long> ids = Arrays.asList(1L, 2L, 3L);
+
+    }
 }
