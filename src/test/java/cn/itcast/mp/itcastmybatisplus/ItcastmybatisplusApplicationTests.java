@@ -10,9 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @SpringBootTest
 class ItcastmybatisplusApplicationTests {
@@ -121,4 +119,20 @@ class ItcastmybatisplusApplicationTests {
         }
     }
 
+    @Test
+    public void testLambdaQueryWrapper(){
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.lambda().select(User::getId, User::getUserName, User::getEmail).like(User::getUserName, "t")
+                .ge(User::getAge, 22);
+        userMapper.selectList(wrapper);
+    }
+
+    @Test
+    public void testCustomWrapper(){
+        int amount = 2;
+        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+        List<Long> ids = new ArrayList<>(Arrays.asList(1L, 2L, 3L));
+        userQueryWrapper.in("id", ids);
+        userMapper.updateAgeByCustomWrapper(amount, userQueryWrapper);
+    }
 }
