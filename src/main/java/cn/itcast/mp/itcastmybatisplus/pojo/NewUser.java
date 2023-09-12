@@ -24,7 +24,7 @@ public class NewUser {
     @TableField(select = false)
     private String password;
     private String phone;
-    private Object info;
+    private String info;
     private Integer status;
     private Integer balance;
     private LocalDateTime createTime;
