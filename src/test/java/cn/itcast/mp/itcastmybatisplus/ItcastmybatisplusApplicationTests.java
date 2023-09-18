@@ -139,6 +139,6 @@ class ItcastmybatisplusApplicationTests {
     @Test
     public void testMultiTableQuery(){
         List<Long> ids = Arrays.asList(1L, 2L, 3L);
-
     }
+
 }
