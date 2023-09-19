@@ -1,5 +1,6 @@
 package cn.itcast.mp.itcastmybatisplus.pojo;
 
+import cn.itcast.mp.itcastmybatisplus.enums.UserStatus;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -27,5 +28,5 @@ public class User {
     private String name;
     private Integer age;
     private String email;
-    private Integer status;
+    private UserStatus status;
 }
