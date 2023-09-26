@@ -5,6 +5,7 @@ import cn.itcast.mp.itcastmybatisplus.pojo.NewUser;
 import cn.itcast.mp.itcastmybatisplus.pojo.User;
 import cn.itcast.mp.itcastmybatisplus.service.IUserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -78,5 +79,11 @@ class UserServiceImplTest {
                 .eq(id != null, User::getId, id)
                 .update();
 
+    }
+
+    public void testPageQuery(){
+        int pageNo = 1, pageSize = 2;
+        //准备分页插件
+        Page.of(pageNo, pageSize);
     }
 }
