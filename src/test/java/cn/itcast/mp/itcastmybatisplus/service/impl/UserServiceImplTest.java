@@ -5,6 +5,7 @@ import cn.itcast.mp.itcastmybatisplus.pojo.NewUser;
 import cn.itcast.mp.itcastmybatisplus.pojo.User;
 import cn.itcast.mp.itcastmybatisplus.service.IUserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,6 +85,17 @@ class UserServiceImplTest {
     public void testPageQuery(){
         int pageNo = 1, pageSize = 2;
         //准备分页插件
-        Page.of(pageNo, pageSize);
+        Page<User> page = Page.of(pageNo, pageSize);
+        page.addOrder(new OrderItem("age", true));
+        page.addOrder(new OrderItem("id", true));
+        Page<User> retPage = iUserService.page(page);
+
+        //解析
+        long total = retPage.getTotal();
+
+        long pageNum = retPage.getPages();
+
+        List<User> userList = retPage.getRecords();
+
     }
 }
